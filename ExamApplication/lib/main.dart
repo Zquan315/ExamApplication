@@ -1,4 +1,5 @@
 import 'package:examapp/Views/Auth/login.dart';
+import 'package:examapp/Views/Auth/mainScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
