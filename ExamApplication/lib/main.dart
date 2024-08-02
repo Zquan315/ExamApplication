@@ -1,6 +1,9 @@
 import 'package:examapp/Views/Auth/login.dart';
 import 'package:examapp/Views/Auth/mainScreen.dart';
+import 'package:examapp/Views/joinAndcreate/createClass.dart';
 import 'package:flutter/material.dart';
+
+import 'Views/joinAndcreate/joinClass.dart';
 
 void main() {
   runApp(const MyApp());
