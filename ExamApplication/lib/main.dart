@@ -1,5 +1,6 @@
 import 'package:examapp/Views/Auth/login.dart';
 import 'package:examapp/Views/Auth/mainScreen.dart';
+import 'package:examapp/Views/class/leader/class_leader.dart';
 import 'package:examapp/Views/joinAndcreate/createClass.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Login());
+        home: const Class());
   }
 }

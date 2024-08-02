@@ -317,7 +317,7 @@ class _AccountPageState extends State<AccountPage> {
           ],
         ),
         const SizedBox(height: 30,),
-        Padding(child: Row(
+        const Padding(child: Row(
           children: [
             Column(
               children: [
@@ -350,7 +350,7 @@ class _AccountPageState extends State<AccountPage> {
           color: Colors.grey,
         ),
 
-        Padding(child: Row(
+        const Padding(child: Row(
           children: [
             Column(
               children: [
@@ -398,7 +398,7 @@ class _AccountPageState extends State<AccountPage> {
             )
           ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(onPressed: null,
@@ -440,7 +440,7 @@ Widget createFAB(String id, String mem, String teacher) {
                     children: [
                       Text(
                         "ID: $id",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white
                         ),
                       ),
@@ -451,7 +451,7 @@ Widget createFAB(String id, String mem, String teacher) {
                     children: [
                       Text(
                         "Members: $mem",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white
                         ),
                       ),
@@ -462,7 +462,7 @@ Widget createFAB(String id, String mem, String teacher) {
                     children: [
                       Text(
                         "Teacher: $teacher",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white
                         ),
                       ),
