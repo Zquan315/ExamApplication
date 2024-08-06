@@ -1,23 +1,21 @@
 import 'dart:ui';
-
-import 'package:examapp/pages/account_page.dart';
-import 'package:examapp/pages/class_page.dart';
-import 'package:examapp/pages/home_page.dart';
-import 'package:examapp/pages/settings_page.dart';
+import 'package:examapp/Views/class/leader/manager_page.dart';
+import 'package:examapp/Views/class/leader/member_page.dart';
+import 'package:examapp/Views/class/leader/test_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class mainScreen extends StatefulWidget {
-  const mainScreen({super.key});
+class MainLeader extends StatefulWidget {
+  const MainLeader({super.key});
 
   @override
-  State<mainScreen> createState() => _mainScreenState();
+  State<MainLeader> createState() => _MainLeaderState();
 }
 
-class _mainScreenState extends State<mainScreen>
+class _MainLeaderState extends State<MainLeader>
     with SingleTickerProviderStateMixin {
   late TabController _tabControllers;
   String user = "";
@@ -26,7 +24,7 @@ class _mainScreenState extends State<mainScreen>
   void initState() {
     super.initState();
     user = "user";
-    _tabControllers = TabController(length: 4, vsync: this);
+    _tabControllers = TabController(length: 3, vsync: this);
     _tabControllers.addListener(() {
       setState(() {});
     });
@@ -40,13 +38,11 @@ class _mainScreenState extends State<mainScreen>
 
   Widget _buildPage() {
     if (_tabControllers.index == 0) {
-      return const HomePage();
+      return const TestPage();
     } else if (_tabControllers.index == 1) {
-      return const ClassPage();
-    } else if (_tabControllers.index == 2) {
-      return const SettingsPage();
+      return const MemberPage();
     } else {
-      return const AccountPage();
+      return const ManagerPage();
     }
   }
 
@@ -65,7 +61,7 @@ class _mainScreenState extends State<mainScreen>
           children: [
             if (a == 0)
               const Text(
-                "Home",
+                "Test",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -73,15 +69,7 @@ class _mainScreenState extends State<mainScreen>
               )
             else if (a == 1)
               const Text(
-                "List of classes",
-                style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              )
-            else if (a == 2)
-              const Text(
-                "Setting",
+                "Member",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -89,7 +77,7 @@ class _mainScreenState extends State<mainScreen>
               )
             else
               const Text(
-                "Account",
+                "Manage",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -110,10 +98,9 @@ class _mainScreenState extends State<mainScreen>
             child: TabBar(
               controller: _tabControllers,
               tabs: const [
-                Tab(text: 'Home', icon: Icon(Icons.home)),
-                Tab(text: 'Class', icon: Icon(Icons.class_)),
-                Tab(text: 'Setting', icon: Icon(Icons.settings)),
-                Tab(text: 'Account', icon: Icon(Icons.account_circle)),
+                Tab(text: 'Test', icon: Icon(Icons.task)),
+                Tab(text: 'Member', icon: Icon(Icons.people)),
+                Tab(text: 'Manage', icon: Icon(Icons.manage_accounts)),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.white,
