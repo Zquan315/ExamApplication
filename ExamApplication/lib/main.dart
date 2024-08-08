@@ -1,5 +1,9 @@
 import 'package:examapp/Views/Auth/login.dart';
+import 'package:examapp/Views/Auth/mainScreen.dart';
 import 'package:examapp/Views/class/leader/main_leader.dart';
+import 'package:examapp/Views/class/member/main_member.dart';
+import 'package:examapp/Views/joinAndcreate/createClass.dart';
+import 'package:examapp/Views/joinAndcreate/joinClass.dart';
 import 'package:examapp/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

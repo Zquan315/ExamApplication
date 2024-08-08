@@ -25,7 +25,7 @@ class _MemberPageState extends State<MemberPage> {
               height: 40,
               child: SearchBar(
                 leading: Icon(Icons.search),
-                hintText: "ID test",
+                hintText: "Phone",
                 controller: null,
                 padding: MaterialStatePropertyAll<EdgeInsets>(
                     EdgeInsets.symmetric(horizontal: 10.0)),

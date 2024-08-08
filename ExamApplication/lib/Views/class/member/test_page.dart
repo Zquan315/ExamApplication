@@ -21,7 +21,7 @@ class _TestPageState extends State<TestPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               SizedBox(
-                width: 250,
+                width: 300,
                 height: 40,
                 child: SearchBar(
                   leading: Icon(Icons.search),
@@ -29,14 +29,6 @@ class _TestPageState extends State<TestPage> {
                   controller: null,
                   padding: MaterialStatePropertyAll<EdgeInsets>(
                       EdgeInsets.symmetric(horizontal: 10.0)),
-                ),
-              ),
-              FloatingActionButton(
-                onPressed: null,
-                backgroundColor: Colors.blue,
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
                 ),
               ),
             ],
@@ -49,17 +41,22 @@ class _TestPageState extends State<TestPage> {
   }
 }
 
-Widget fabTest(String id, String time) {
+Widget test(String id, String time) {
   return Padding(
-      padding: const EdgeInsets.all(4),
-      child: Padding(
-        padding: const EdgeInsets.all(1),
-        child: Column(
-          children: [
-            FloatingActionButton.extended(
-              onPressed: null,
-              backgroundColor: Colors.teal,
-              label: Column(
+    padding: const EdgeInsets.all(3),
+    child: Padding(
+      padding: const EdgeInsets.all(1),
+      child: Column(
+        children: [
+          Container(
+            width: 270,
+            decoration: BoxDecoration(
+              color: Colors.teal,  // This should be inside the BoxDecoration
+              borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
+            ),
+            child: TextButton(
+              onPressed: () {},
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
@@ -75,7 +72,7 @@ Widget fabTest(String id, String time) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Members: $time",
+                        "Time: $time minutes",
                         style: const TextStyle(color: Colors.white),
                       ),
                     ],
@@ -83,28 +80,29 @@ Widget fabTest(String id, String time) {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            )
-          ],
-        ),
-      ));
+          ),
+          const SizedBox(
+            height: 20,
+          )
+        ],
+      ),
+    ),
+  );
 }
+
 
 Widget listTest(int amount, String id, int time) {
   return Expanded(
     child: GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // Số cột
+        crossAxisCount: 1, // Số cột
         mainAxisSpacing: 0.0, // Khoảng cách giữa các hàng
-        crossAxisSpacing: 10.0, // Khoảng cách giữa các cột
-        childAspectRatio: 2, // Tỷ lệ giữa chiều rộng và chiều cao
+        crossAxisSpacing: 0.0, // Khoảng cách giữa các cột
+        childAspectRatio: 4, // Tỷ lệ giữa chiều rộng và chiều cao
       ),
       itemCount: amount,
       itemBuilder: (BuildContext context, int index) {
-        return fabTest(
-          id,
-          '$time',
+        return test(id, '$time',
         );
       },
     ),
