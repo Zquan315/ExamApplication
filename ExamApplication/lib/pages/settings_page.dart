@@ -1,3 +1,4 @@
+import 'package:examapp/Components/btn_delete.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,53 +15,56 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
         foregroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Image.asset(
-                  "assets/LogoApp.png",
-                  scale: 1.5,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(40),
+                  child: Image.asset(
+                    "assets/LogoApp.png",
+                    scale: 1.5,
+                  ),
+                )
+              ],
+            ),
+            Column(
+              children: [
+                MySettingsTitle(
+                  title: "Dark Mode",
+                  action: CupertinoSwitch(
+                    onChanged: (value) =>
+                        Provider.of<ThemeProvider>(context, listen: false)
+                            .toggleTheme(),
+                    value: Provider.of<ThemeProvider>(context, listen: false)
+                        .isDarkMode,
+                  ),
                 ),
-              )
-            ],
-          ),
-          Column(
-            children: [
-              MySettingsTitle(
-                title: "Dark Mode",
-                action: CupertinoSwitch(
-                  onChanged: (value) =>
-                      Provider.of<ThemeProvider>(context, listen: false)
-                          .toggleTheme(),
-                  value: Provider.of<ThemeProvider>(context, listen: false)
-                      .isDarkMode,
+                Button(
+                  label: "Edit information",
+                  onTap: () {},
                 ),
-              ),
-              Button(
-                label: "Edit information",
-                onTap: () {},
-              ),
-              Button(
-                label: "Change password",
-                onTap: () {},
-              ),
-              Button(
-                label: "Response us",
-                onTap: () {},
-              ),
-              Button(
-                label: "Delete account",
-                onTap: () {},
-              ),
-            ],
-          )
-        ],
+                Button(
+                  label: "Change password",
+                  onTap: () {},
+                ),
+                Button(
+                  label: "Response us",
+                  onTap: () {},
+                ),
+                BtnDelete(
+                  label: "Delete account",
+                  onTap: (){},
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

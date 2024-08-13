@@ -1,5 +1,6 @@
 import 'package:examapp/Components/button.dart';
 import 'package:examapp/Components/text_field.dart';
+import 'package:examapp/Views/Auth/mainScreen.dart';
 import 'package:examapp/Views/Auth/signup.dart';
 import 'package:examapp/Views/class/leader/main_leader.dart';
 import 'package:examapp/Views/class/member/main_member.dart';
@@ -97,6 +98,25 @@ class _LoginState extends State<Login> {
                   label: "LOGIN",
                   onTap: () {
                     if (formKey.currentState!.validate()) {}
+                    if(emailController.text == 'admin' && passwordController.text == 'admin')
+                      {
+                        setState(() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const mainScreen()));
+                        });
+                      }
+                    else if(emailController.text == 'member' && passwordController.text == 'member')
+                    {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const mainScreen()));
+                      });
+
+                    }
                   },
                 ),
 
@@ -112,31 +132,6 @@ class _LoginState extends State<Login> {
                         child: const Text('Sign up'))
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainLeader()),
-                        );
-                      },
-                      child: const Text("Leader"),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainMember()),
-                        );
-                      },
-                      child: const Text("Member"),
-                    ),
-                  ],
-                )
               ],
             ),
           ),

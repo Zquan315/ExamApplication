@@ -59,6 +59,7 @@ class _mainScreenState extends State<mainScreen>
     int a = index();
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue[700],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,

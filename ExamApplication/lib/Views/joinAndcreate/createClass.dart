@@ -1,4 +1,7 @@
+import 'package:examapp/Views/Auth/mainScreen.dart';
 import 'package:flutter/material.dart';
+
+import '../../pages/home_page.dart';
 
 class createClass extends StatefulWidget {
   const createClass({super.key});
@@ -12,6 +15,7 @@ class _createClassState extends State<createClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -163,7 +167,10 @@ class _createClassState extends State<createClass> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                  onPressed: (){},
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const mainScreen())),
                   child: const Text(
                     "Exit",
                     style: TextStyle(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Auth/mainScreen.dart';
+
 class joinClass extends StatefulWidget {
   const joinClass({super.key});
 
@@ -12,6 +14,7 @@ class _joinClassState extends State<joinClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -72,7 +75,10 @@ class _joinClassState extends State<joinClass> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const mainScreen())),
               child: const Text(
                 "Exit",
                 style: TextStyle(

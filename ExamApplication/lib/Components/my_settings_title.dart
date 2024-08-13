@@ -9,9 +9,10 @@ class MySettingsTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 310,
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+      margin: const EdgeInsets.only( bottom: 10),
       child: Padding(
         padding: const EdgeInsets.all(9),
         child: Row(

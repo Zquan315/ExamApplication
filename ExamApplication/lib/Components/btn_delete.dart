@@ -11,7 +11,7 @@ class BtnDelete extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-      width: MediaQuery.of(context).size.width * .92,
+      width: 400,
       height: buttonHeight,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

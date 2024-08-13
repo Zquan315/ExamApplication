@@ -1,3 +1,5 @@
+import 'package:examapp/Views/joinAndcreate/createClass.dart';
+import 'package:examapp/Views/joinAndcreate/joinClass.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,13 +22,16 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(children: <Widget>[
               SizedBox(height: 30),
               FloatingActionButton.extended(
-                onPressed: null,
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const createClass())),
                 icon: Icon(
                   Icons.add,
                   color: Colors.white,
@@ -42,7 +47,10 @@ class HomePage extends StatelessWidget {
                 height: 20,
               ),
               FloatingActionButton.extended(
-                onPressed: null,
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const joinClass())),
                 icon: Icon(
                   Icons.class_outlined,
                   color: Colors.white,

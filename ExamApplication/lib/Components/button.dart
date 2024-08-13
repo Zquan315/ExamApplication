@@ -11,7 +11,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      width: MediaQuery.of(context).size.width * .92,
+      width: 310,
       height: buttonHeight,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

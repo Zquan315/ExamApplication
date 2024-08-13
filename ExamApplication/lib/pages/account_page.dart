@@ -1,7 +1,12 @@
+import 'package:examapp/Components/button.dart';
+import 'package:examapp/Views/Auth/login.dart';
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,11 +108,67 @@ class AccountPage extends StatelessWidget {
         const SizedBox(
           height: 100,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FloatingActionButton.extended(
-              onPressed: null,
+            onPressed: () {
+              showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                icon: Icon(Icons.logout, color: Colors.red,),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('Are you sure to log out?',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.blue),
+                            ),
+                              onPressed: (){Navigator.pop(context);},
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(
+                                  color: Colors.white
+                                ),
+                              )
+                          ),
+                          TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.blue),
+                            ),
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Login())),
+                              child: const Text(
+                                "Sure",
+                                style: TextStyle(
+                                    color: Colors.white
+                                ),
+                              )
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+              );
+            },
+            //Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                       builder: (context) => const Login())),
               label: Text(
                 "Log out",
                 style: TextStyle(fontSize: 22, color: Colors.white),
@@ -137,4 +198,6 @@ class AccountPage extends StatelessWidget {
       ],
     );
   }
+
 }
+
