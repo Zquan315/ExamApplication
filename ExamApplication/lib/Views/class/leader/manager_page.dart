@@ -1,3 +1,5 @@
+import 'package:examapp/Components/btn_delete.dart';
+import 'package:examapp/Components/button.dart';
 import 'package:flutter/material.dart';
 
 class ManagerPage extends StatelessWidget {
@@ -5,136 +7,99 @@ class ManagerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          child: Image.asset("assets/account_image.png"),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "To Cong Quan",
-              style: TextStyle(fontSize: 25, color: Colors.red),
-            )
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "0123456789",
-              style: TextStyle(fontSize: 20, color: Colors.blue),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        const Padding(
-          child: Row(
-            children: [
-              Column(
-                children: [
-                  Icon(
-                    Icons.email,
-                    color: Colors.blue,
-                  )
-                ],
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              Column(
-                children: [
-                  Text(
-                    "ExamApp312@gmail.com",
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
-                  )
-                ],
-              )
-            ],
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 50,
           ),
-          padding: EdgeInsets.all(20.0),
-        ),
-        const Divider(
-          height: 0,
-          thickness: 1,
-          indent: 20,
-          endIndent: 20,
-          color: Colors.grey,
-        ),
-        const Padding(
-          child: Row(
-            children: [
-              Column(
-                children: [
-                  Icon(
-                    Icons.male,
-                    color: Colors.blue,
-                  )
-                ],
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              Column(
-                children: [
-                  Text(
-                    "Male/Female",
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
-                  )
-                ],
-              )
-            ],
-          ),
-          padding: EdgeInsets.all(20.0),
-        ),
-        const Divider(
-          height: 0,
-          thickness: 1,
-          indent: 20,
-          endIndent: 20,
-          color: Colors.grey,
-        ),
-        const SizedBox(
-          height: 100,
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FloatingActionButton.extended(
-              onPressed: null,
-              label: Text(
-                "Log out",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              ),
-              backgroundColor: Colors.blue,
-            )
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-                onPressed: null,
-                child: Row(
+          Container(
+            margin: const EdgeInsets.only(
+              left: 25,
+              right: 25,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.primary, width: 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.all(16),
+            child: const Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Help",
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.black87,
-                          decoration: TextDecoration.underline),
-                    )
+                      "ID Class:",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "123",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ],
-                ))
-          ],
-        )
-      ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Leader:",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "Ngô Gia Khiêm",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Number of member:",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "1206",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          BtnDelete(
+            label: "Delete Class",
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:examapp/Components/button.dart';
 import 'package:examapp/Components/text_field.dart';
 import 'package:examapp/Views/Auth/signup.dart';
+import 'package:examapp/Views/class/leader/main_leader.dart';
+import 'package:examapp/Views/class/member/main_member.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -108,6 +110,31 @@ class _LoginState extends State<Login> {
                             MaterialPageRoute(
                                 builder: (context) => const SignUp())),
                         child: const Text('Sign up'))
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainLeader()),
+                        );
+                      },
+                      child: const Text("Leader"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainMember()),
+                        );
+                      },
+                      child: const Text("Member"),
+                    ),
                   ],
                 )
               ],
