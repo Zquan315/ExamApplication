@@ -2,6 +2,7 @@ import 'package:examapp/Components/button.dart';
 import 'package:examapp/Components/text_field.dart';
 import 'package:examapp/Views/Auth/mainScreen.dart';
 import 'package:examapp/Views/Auth/signup.dart';
+import 'package:examapp/Views/Password/ForgotPass.dart';
 import 'package:examapp/Views/class/leader/main_leader.dart';
 import 'package:examapp/Views/class/member/main_member.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,10 @@ class _LoginState extends State<Login> {
                     const Text('Remember me'),
                     const Spacer(),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ForgotPass())),
                         child: const Text('Forgot password?')),
                   ],
                 ),
