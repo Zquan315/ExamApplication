@@ -22,6 +22,7 @@ Future<String?> getOTP(String recipientEmail) async {
     await send(message, smtpServer);
     return OTP;
   } catch (e) {
+    print('Failed to send OTP: $e');
     return null;
   }
 }

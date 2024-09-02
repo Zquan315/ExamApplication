@@ -7,8 +7,10 @@ class InputField extends StatelessWidget {
   final FormFieldValidator? validator;
   final Widget? suffixIcon;
   final bool obscureText;
+  final TextInputType? keyboardType;
   const InputField({
     super.key,
+    this.keyboardType,
     this.controller,
     this.validator,
     this.suffixIcon,
@@ -22,6 +24,7 @@ class InputField extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: TextFormField(
+        keyboardType: keyboardType,
         controller: controller,
         validator: validator,
         obscureText: obscureText,
