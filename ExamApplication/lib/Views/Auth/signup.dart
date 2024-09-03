@@ -1,10 +1,11 @@
 import 'package:examapp/Components/DropDown-Menu.dart';
 import 'package:examapp/Components/button.dart';
 import 'package:examapp/Components/text_field.dart';
+import 'package:examapp/ConnectDB/connectDB.dart';
+import 'package:examapp/ConnectDB/insertDB/register.dart';
 import 'package:examapp/Views/Auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'AuthRegis.dart';
 
 class SignUp extends StatefulWidget {
@@ -30,6 +31,7 @@ class _SignUpState extends State<SignUp> {
   List<String> list = <String>['Nam', 'Nữ'];
   bool _obscureText = true;
   bool _obscureConfirmText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,19 +40,18 @@ class _SignUpState extends State<SignUp> {
         child: Center(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   height: 150,
                   width: 150,
                   child: Image.asset("assets/LogoApp.png"),
                 ),
-                const ListTile(
-                  contentPadding: EdgeInsets.only(left: 140),
-                  title: Text(
+                const Text(
                     'Đăng ký',
                     style: TextStyle(fontSize: 30),
-                  ),
                 ),
+                SizedBox(height: 20,),
                 InputField(
                   controller: usernameController,
                   hintText: "Họ tên",
@@ -167,12 +168,19 @@ class _SignUpState extends State<SignUp> {
                         });
                         return;
                       }
-                      print(sexController.text);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AuthRegis()),
+                          builder: (context) => AuthRegis(
+                            usernameController: usernameController,
+                            phoneController: phoneController,
+                            emailController: emailController,
+                            sexController: sexController,
+                            passwordController: passwordController,
+                          ),
+                        ),
                       );
+
                     }
                   },
                 ),
@@ -195,6 +203,8 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
+
 }
 bool isValidEmail(String email) {
   final RegExp emailRegex = RegExp(
@@ -215,3 +225,5 @@ bool isValidPass(String pass)
   if(pass.length < 8) return false;
   return true;
 }
+
+

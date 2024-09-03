@@ -9,24 +9,43 @@ import 'package:examapp/Views/Password/ChangePass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../ConnectDB/connectDB.dart';
+import '../../ConnectDB/insertDB/register.dart';
 import '../Auth/otp.dart';
 
 class AuthRegis extends StatefulWidget {
-  const AuthRegis({super.key});
+  final TextEditingController usernameController;
+  final TextEditingController phoneController;
+  final TextEditingController emailController;
+  final TextEditingController sexController;
+  final TextEditingController passwordController;
+  const AuthRegis({
+    super.key,
+    required this.usernameController,
+    required this.phoneController,
+    required this.emailController,
+    required this.sexController,
+    required this.passwordController,
+  });
   @override
   State<AuthRegis> createState() => _AuthRegisState();
 }
 
 class _AuthRegisState extends State<AuthRegis> {
-
-
-
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   String? otpValue;
   Color emailFieldColor = Colors.blue.withOpacity(.5);
   Color otpFieldColor = Colors.blue.withOpacity(.5);
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = widget.emailController;
+    otpController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +103,7 @@ class _AuthRegisState extends State<AuthRegis> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-
+                    readOnly: true,
                     ),
                   )
                 ],
@@ -175,6 +194,8 @@ class _AuthRegisState extends State<AuthRegis> {
                           // const CircularProgressIndicator(
                           //
                           // );
+                          _register(widget.usernameController.text,emailController.text,
+                              widget.phoneController.text, widget.passwordController.text, widget.sexController.text);
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -218,6 +239,10 @@ class _AuthRegisState extends State<AuthRegis> {
         ),
       ),
     );
+  }
+  Future<void> _register(String name, String email, String phone, String pass, String sex) async{
+    final data = Register(name: name, email: email, phone: phone, password: pass, sex: sex);
+    var res = await connectMongoDb.register(data);
   }
 }
 bool isValidEmail(String email) {

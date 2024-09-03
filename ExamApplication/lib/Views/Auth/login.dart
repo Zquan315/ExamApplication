@@ -38,14 +38,11 @@ class _LoginState extends State<Login> {
                   child: Image.asset("assets/LogoApp.png"),
                 ),
 
-                const ListTile(
-                  contentPadding: EdgeInsets.only(left: 150),
-                  title: Text(
+                const Text(
                     'ĐĂNG NHẬP',
                     style: TextStyle(fontSize: 30),
-                  ),
                 ),
-
+                SizedBox(height: 20,),
                 InputField(
                   controller: emailController,
                   hintText: "Email",
@@ -87,7 +84,7 @@ class _LoginState extends State<Login> {
                       value: false,
                       onChanged: (bool? value) {},
                     ),
-                    const Text('Nhớ lấy tôi'),
+                    const Text('Nhớ tài khoản'),
                     const Spacer(),
                     TextButton(
                         onPressed: () => Navigator.push(
