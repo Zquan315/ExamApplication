@@ -25,7 +25,7 @@ class _MemberPageState extends State<MemberPage> {
               height: 40,
               child: SearchBar(
                 leading: Icon(Icons.search),
-                hintText: "Phone",
+                hintText: "Số điện thoại",
                 controller: null,
                 padding: MaterialStatePropertyAll<EdgeInsets>(
                     EdgeInsets.symmetric(horizontal: 10.0)),
@@ -43,8 +43,8 @@ class _MemberPageState extends State<MemberPage> {
           ),
           margin: EdgeInsets.only(left: 20, right: 20, top: 20),
           child: const ListTile(
-            title: Text("User name"),
-            subtitle: Text("Phone"),
+            title: Text("Tên"),
+            subtitle: Text("SĐT"),
             leading: Icon(Icons.person),
             trailing: Icon(Icons.delete),
           ),

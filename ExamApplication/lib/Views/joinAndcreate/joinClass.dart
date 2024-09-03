@@ -19,7 +19,7 @@ class _joinClassState extends State<joinClass> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Enter ID of class",
+              "Nhập ID lớp",
               style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ class _joinClassState extends State<joinClass> {
                     backgroundColor: Colors.blue,
                     onPressed: () {},
                     label: const Text(
-                      'Join',
+                      'Tham gia',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )))
           ],
@@ -80,7 +80,7 @@ class _joinClassState extends State<joinClass> {
                   MaterialPageRoute(
                       builder: (context) => const mainScreen())),
               child: const Text(
-                "Exit",
+                "Thoát",
                 style: TextStyle(
                     fontSize: 18, decoration: TextDecoration.underline),
               ),

@@ -14,15 +14,15 @@ Future<String?> getOTP(String recipientEmail) async {
     final message = Message()
       ..from = const Address(fromEmail, 'ExamApp')
       ..recipients.add(recipientEmail)
-      ..subject = 'OTP Code From ExamApp'
+      ..subject = 'Mã OTP từ ExamApp'
       ..html = '''
-        <p>Your OTP code is: <strong style="color: red;">$OTP</strong>. Please don't share with anyone!</p>
+        <p>Mã OTP của bạn là: <strong style="color: red;">$OTP</strong>. Vui lòng không chia sẻ cho ai khác!</p>
       ''';
 
     await send(message, smtpServer);
     return OTP;
   } catch (e) {
-    print('Failed to send OTP: $e');
+    print('Đã có lỗi khi gửi OTP: $e');
     return null;
   }
 }

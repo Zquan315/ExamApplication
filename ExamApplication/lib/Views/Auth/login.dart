@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
                 const ListTile(
                   contentPadding: EdgeInsets.only(left: 150),
                   title: Text(
-                    'LOGIN',
+                    'ĐĂNG NHẬP',
                     style: TextStyle(fontSize: 30),
                   ),
                 ),
@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                   icon: Icons.email_rounded,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Email is required";
+                      return "Vui lòng nhập Email";
                     }
                     return null;
                   },
@@ -60,7 +60,7 @@ class _LoginState extends State<Login> {
 
                 InputField(
                   controller: passwordController,
-                  hintText: "Password",
+                  hintText: "Mật khẩu",
                   icon: Icons.lock,
                   obscureText: _obscureText,
                   suffixIcon: IconButton(
@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Password is required";
+                      return "Vui lòng nhập mật khẩu";
                     }
                     return null;
                   },
@@ -87,19 +87,19 @@ class _LoginState extends State<Login> {
                       value: false,
                       onChanged: (bool? value) {},
                     ),
-                    const Text('Remember me'),
+                    const Text('Nhớ lấy tôi'),
                     const Spacer(),
                     TextButton(
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const ForgotPass())),
-                        child: const Text('Forgot password?')),
+                        child: const Text('Quên mật khẩu?')),
                   ],
                 ),
 
                 Button(
-                  label: "LOGIN",
+                  label: "Đăng Nhập",
                   onTap: () {
                     if (formKey.currentState!.validate()) {}
                     if(emailController.text == 'admin' && passwordController.text == 'admin')
@@ -127,13 +127,13 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Don’t have an account?'),
+                    const Text('Bạn chưa có tài khoản?'),
                     TextButton(
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SignUp())),
-                        child: const Text('Sign up'))
+                        child: const Text('Đăng ký ngay'))
                   ],
                 ),
               ],

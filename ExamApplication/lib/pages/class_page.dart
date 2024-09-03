@@ -25,7 +25,7 @@ class _ClassPageState extends State<ClassPage> {
                 height: 40,
                 child: SearchBar(
                   leading: Icon(Icons.search),
-                  hintText: "ID class",
+                  hintText: "ID Lớp",
                   controller: null,
                   padding: MaterialStatePropertyAll<EdgeInsets>(
                       EdgeInsets.symmetric(horizontal: 10.0)),
@@ -67,7 +67,7 @@ Widget createFAB(String id, String mem, String teacher) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Members: $mem",
+                        "Thành viên: $mem",
                         style: const TextStyle(color: Colors.white),
                       ),
                     ],
@@ -76,7 +76,7 @@ Widget createFAB(String id, String mem, String teacher) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Teacher: $teacher",
+                        "Giáo viên: $teacher",
                         style: const TextStyle(color: Colors.white),
                       ),
                     ],

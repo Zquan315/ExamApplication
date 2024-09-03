@@ -49,7 +49,7 @@ class _AuthRegisState extends State<AuthRegis> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Authentication",
+                    "Xác Thực",
                     style: TextStyle(fontSize: 25, color: Colors.blue),
                   )
                 ],
@@ -136,7 +136,7 @@ class _AuthRegisState extends State<AuthRegis> {
                         }
                       },
                       child: const Text(
-                        'Get code',
+                        'Lấy mã',
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.blueGrey,
@@ -180,8 +180,8 @@ class _AuthRegisState extends State<AuthRegis> {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 alignment: Alignment.center,
-                                title: const Text("Sign up"),
-                                content: const Text("Sign up successfully!",
+                                title: const Text("Đăng ký"),
+                                content: const Text("Đăng ký thành công!",
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.blue,
@@ -208,7 +208,7 @@ class _AuthRegisState extends State<AuthRegis> {
                           });
                         }
                       },
-                      child: const Text("Confirm"),
+                      child: const Text("Xác nhận"),
                     ),
                   )
                 ],

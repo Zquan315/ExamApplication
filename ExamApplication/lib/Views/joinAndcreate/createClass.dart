@@ -21,7 +21,7 @@ class _createClassState extends State<createClass> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Create a class",
+              "Tạo lớp học",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -66,7 +66,7 @@ class _createClassState extends State<createClass> {
                 Row(
                   children: [
                     Text(
-                      "Name",
+                      "Tên",
                       style: TextStyle(
                           fontSize: 20
                       ),
@@ -91,7 +91,7 @@ class _createClassState extends State<createClass> {
                 Row(
                   children: [
                     Text(
-                      "Number",
+                      "Số lượng",
                       style: TextStyle(
                           fontSize: 20
                       ),
@@ -116,7 +116,7 @@ class _createClassState extends State<createClass> {
                 Row(
                   children: [
                     Text(
-                      "Descript",
+                      "Mô tả",
                       style: TextStyle(
                           fontSize: 20
                       ),
@@ -151,7 +151,7 @@ class _createClassState extends State<createClass> {
                     backgroundColor: Colors.blue,
                     onPressed: (){},
                     label: const Text(
-                      'Create',
+                      'Tạo',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20
@@ -172,7 +172,7 @@ class _createClassState extends State<createClass> {
                       MaterialPageRoute(
                           builder: (context) => const mainScreen())),
                   child: const Text(
-                    "Exit",
+                    "Thoát",
                     style: TextStyle(
                         fontSize: 18,
                         decoration: TextDecoration.underline

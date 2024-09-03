@@ -47,7 +47,7 @@ class _ForgotPassState extends State<ForgotPass> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Forgot password",
+                    "Quên mật khẩu",
                     style: TextStyle(fontSize: 25, color: Colors.blue),
                   )
                 ],
@@ -134,7 +134,7 @@ class _ForgotPassState extends State<ForgotPass> {
                         }
                       },
                       child: const Text(
-                        'Get code',
+                        'Lấy mã',
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.blueGrey,
@@ -182,7 +182,7 @@ class _ForgotPassState extends State<ForgotPass> {
                           });
                         }
                       },
-                      child: const Text("Confirm"),
+                      child: const Text("Xác nhận"),
                     ),
                   )
                 ],

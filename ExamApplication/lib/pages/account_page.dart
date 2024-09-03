@@ -89,7 +89,7 @@ class AccountPage extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "Male/Female",
+                    "Nam/Nữ",
                     style: TextStyle(fontSize: 20, color: Colors.blue),
                   )
                 ],
@@ -120,7 +120,7 @@ class AccountPage extends StatelessWidget {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Are you sure to log out?',
+                    const Text('Bạn có chắc chắn đăng xuất?',
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -136,7 +136,7 @@ class AccountPage extends StatelessWidget {
                             ),
                               onPressed: (){Navigator.pop(context);},
                               child: const Text(
-                                "Cancel",
+                                "Hủy",
                                 style: TextStyle(
                                   color: Colors.white
                                 ),
@@ -151,7 +151,7 @@ class AccountPage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) => const Login())),
                               child: const Text(
-                                "Sure",
+                                "Chắc rồi",
                                 style: TextStyle(
                                     color: Colors.white
                                 ),
@@ -170,7 +170,7 @@ class AccountPage extends StatelessWidget {
             //                   MaterialPageRoute(
             //                       builder: (context) => const Login())),
               label: Text(
-                "Log out",
+                "Đăng xuất",
                 style: TextStyle(fontSize: 22, color: Colors.white),
               ),
               backgroundColor: Colors.blue,
@@ -185,7 +185,7 @@ class AccountPage extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Help",
+                      "Trợ giúp",
                       style: TextStyle(
                           fontSize: 17,
                           color: Colors.black87,

@@ -32,7 +32,7 @@ class ManagerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "ID Class:",
+                      "ID Lớp:",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -53,7 +53,7 @@ class ManagerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Leader:",
+                      "Trưởng nhóm:",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -74,7 +74,7 @@ class ManagerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Number of member:",
+                      "Số thành viên:",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -95,7 +95,7 @@ class ManagerPage extends StatelessWidget {
             height: 50,
           ),
           BtnDelete(
-            label: "Delete Class",
+            label: "Xóa lớp học",
             onTap: () {},
           ),
         ],

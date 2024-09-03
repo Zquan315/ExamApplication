@@ -36,7 +36,7 @@ class SettingsPage extends StatelessWidget {
             Column(
               children: [
                 MySettingsTitle(
-                  title: "Dark Mode",
+                  title: "Chế độ tối",
                   action: CupertinoSwitch(
                     onChanged: (value) =>
                         Provider.of<ThemeProvider>(context, listen: false)
@@ -46,19 +46,19 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
                 Button(
-                  label: "Edit information",
+                  label: "Chỉnh sửa thông tin",
                   onTap: () {},
                 ),
                 Button(
-                  label: "Change password",
+                  label: "Thay đổi mật khẩu",
                   onTap: () {},
                 ),
                 Button(
-                  label: "Response us",
+                  label: "Phản hồi",
                   onTap: () {},
                 ),
                 BtnDelete(
-                  label: "Delete account",
+                  label: "Xóa tài khoản",
                   onTap: (){},
                 )
               ],

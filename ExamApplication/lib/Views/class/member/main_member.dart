@@ -63,7 +63,7 @@ class _MainMemberState extends State<MainMember> with SingleTickerProviderStateM
           children: [
             if(a == 0)
               const Text(
-                "Test",
+                "Bài kiểm tra",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -72,7 +72,7 @@ class _MainMemberState extends State<MainMember> with SingleTickerProviderStateM
               )
             else if( a== 1)
               const Text(
-                "History",
+                "Lịch sử",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -94,8 +94,8 @@ class _MainMemberState extends State<MainMember> with SingleTickerProviderStateM
             child: TabBar(
               controller: _tabControllers,
               tabs:const [
-                Tab(text: 'Test', icon: Icon(Icons.note_alt)),
-                Tab(text: 'History', icon: Icon(Icons.history)),
+                Tab(text: 'Bài kiểm tra', icon: Icon(Icons.note_alt)),
+                Tab(text: 'Lịch sử', icon: Icon(Icons.history)),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.white,

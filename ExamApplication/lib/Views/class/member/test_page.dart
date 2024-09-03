@@ -72,7 +72,7 @@ Widget test(String id, String time) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Time: $time minutes",
+                        "Thời gian: $time phút",
                         style: const TextStyle(color: Colors.white),
                       ),
                     ],

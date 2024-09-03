@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
   Color phoneFieldColor = Colors.blue.withOpacity(.5);
   Color passFieldColor = Colors.blue.withOpacity(.5);
   final formKey = GlobalKey<FormState>();
-  List<String> list = <String>['Male', 'Female'];
+  List<String> list = <String>['Nam', 'Nữ'];
   bool _obscureText = true;
   bool _obscureConfirmText = true;
   @override
@@ -47,17 +47,17 @@ class _SignUpState extends State<SignUp> {
                 const ListTile(
                   contentPadding: EdgeInsets.only(left: 140),
                   title: Text(
-                    'SIGN UP',
+                    'Đăng ký',
                     style: TextStyle(fontSize: 30),
                   ),
                 ),
                 InputField(
                   controller: usernameController,
-                  hintText: "Name",
+                  hintText: "Họ tên",
                   icon: Icons.person,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Name is invalid";
+                      return "Tên không hợp lệ";
                     }
                     return null;
                   },
@@ -69,7 +69,7 @@ class _SignUpState extends State<SignUp> {
                   icon: Icons.email_rounded,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Email is invalid";
+                      return "Email không hợp lệ";
                     }
                     return null;
                   },
@@ -77,11 +77,11 @@ class _SignUpState extends State<SignUp> {
                 InputField(
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
-                  hintText: "Phone",
+                  hintText: "Số điện thoại",
                   icon: Icons.phone,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Phone is invalid";
+                      return "Số điện thoại không hợp lệ";
                     }
                     return null;
                   },
@@ -89,7 +89,7 @@ class _SignUpState extends State<SignUp> {
 
                 InputField(
                   controller: passwordController,
-                  hintText: "Password",
+                  hintText: "Mật khẩu",
                   icon: Icons.lock,
                   obscureText: _obscureText,
                   suffixIcon: IconButton(
@@ -104,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Password is invalid";
+                      return "Mật khẩu không hợp lệ";
                     }
 
                     return null;
@@ -112,7 +112,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 InputField(
                   controller: confirmPasswordController,
-                  hintText: "Confirm Password",
+                  hintText: "Xác nhận mật khẩu",
                   icon: Icons.lock,
                   obscureText: _obscureConfirmText,
                   suffixIcon: IconButton(
@@ -129,21 +129,21 @@ class _SignUpState extends State<SignUp> {
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Confirm Password is invalid";
+                      return "Xác nhận mật khẩu không hợp lệ";
                     } else if (confirmPasswordController.text !=
                         passwordController.text) {
-                      return "Password don't match";
+                      return "Mật khẩu không trùng nhau";
                     }
                     return null;
                   },
                 ),
 
                  dropDownMenu(
-                  list: ['Male', 'Female'],
+                  list: ['Nam', 'Nữ'],
                   controller: sexController,
                 ),
                 Button(
-                  label: "SIGN UP",
+                  label: "Đăng Ký",
                   onTap: () {
                     if (formKey.currentState!.validate()) {
                       if(!isValidEmail(emailController.text)){
@@ -179,13 +179,13 @@ class _SignUpState extends State<SignUp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Already have an account?'),
+                    const Text('Bạn đã có tài khoản?'),
                     TextButton(
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Login())),
-                        child: const Text('Login'))
+                        child: const Text('Đăng nhập'))
                   ],
                 )
               ],

@@ -66,7 +66,7 @@ class _mainScreenState extends State<mainScreen>
           children: [
             if (a == 0)
               const Text(
-                "Home",
+                "Trang chủ",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -74,7 +74,7 @@ class _mainScreenState extends State<mainScreen>
               )
             else if (a == 1)
               const Text(
-                "List of classes",
+                "Danh sách lớp học",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -82,7 +82,7 @@ class _mainScreenState extends State<mainScreen>
               )
             else if (a == 2)
               const Text(
-                "Setting",
+                "Cài đặt",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -90,7 +90,7 @@ class _mainScreenState extends State<mainScreen>
               )
             else
               const Text(
-                "Account",
+                "Tài khoản",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -111,10 +111,10 @@ class _mainScreenState extends State<mainScreen>
             child: TabBar(
               controller: _tabControllers,
               tabs: const [
-                Tab(text: 'Home', icon: Icon(Icons.home)),
-                Tab(text: 'Class', icon: Icon(Icons.class_)),
-                Tab(text: 'Setting', icon: Icon(Icons.settings)),
-                Tab(text: 'Account', icon: Icon(Icons.account_circle)),
+                Tab(text: 'Trang chủ', icon: Icon(Icons.home)),
+                Tab(text: 'Lớp', icon: Icon(Icons.class_)),
+                Tab(text: 'Cài đặt', icon: Icon(Icons.settings)),
+                Tab(text: 'Tài khoản', icon: Icon(Icons.account_circle)),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.white,

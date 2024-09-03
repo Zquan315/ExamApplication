@@ -42,15 +42,15 @@ class _dropDownMenuState extends State<dropDownMenu> {
           child: Row(
             children: [
               Icon(
-                value == 'Male' ? Icons.male : Icons.female,
-                color: value == 'Male' ? Colors.blue : Colors.pink,
+                value == 'Nam' ? Icons.male : Icons.female,
+                color: value == 'Nam' ? Colors.blue : Colors.pink,
               ),
               const SizedBox(width: 25),
               Text(
                 value,
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
-                  color: value == 'Male' ? Colors.blue : Colors.pink,
+                  color: value == 'Nam' ? Colors.blue : Colors.pink,
                 ),
               ),
             ],

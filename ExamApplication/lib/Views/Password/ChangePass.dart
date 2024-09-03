@@ -24,7 +24,7 @@ class _ChangePassState extends State<ChangePass> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Change password",
+                "Đổi mật khẩu",
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.blue
@@ -41,7 +41,7 @@ class _ChangePassState extends State<ChangePass> {
                 height: 60,
                 child: TextFormField(
                   decoration: InputDecoration(
-                    label: Text("Password", style: TextStyle(color: Colors.blue),),
+                    label: Text("Mật khẩu", style: TextStyle(color: Colors.blue),),
                     prefixIcon: Icon(Icons.lock, color: Colors.blue,),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.visibility, color: Colors.blue,),
@@ -72,7 +72,7 @@ class _ChangePassState extends State<ChangePass> {
                 height: 60,
                 child: TextFormField(
                   decoration: InputDecoration(
-                    label: Text("Confirm password", style: TextStyle(color: Colors.blue),),
+                    label: Text("Xác nhận mật khẩu", style: TextStyle(color: Colors.blue),),
                     prefixIcon: Icon(Icons.lock, color: Colors.blue,),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.visibility, color: Colors.blue,),
@@ -109,7 +109,7 @@ class _ChangePassState extends State<ChangePass> {
                   ),
                   onPressed: () {  },
                   child: Text(
-                      "Confirm"
+                      "Xác nhận"
                   ),
                 ),
               )

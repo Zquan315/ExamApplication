@@ -61,7 +61,7 @@ class _MainLeaderState extends State<MainLeader>
           children: [
             if (a == 0)
               const Text(
-                "Test",
+                "Bài kiểm tra",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -69,7 +69,7 @@ class _MainLeaderState extends State<MainLeader>
               )
             else if (a == 1)
               const Text(
-                "Member",
+                "Thành viên",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -77,7 +77,7 @@ class _MainLeaderState extends State<MainLeader>
               )
             else
               const Text(
-                "Manage",
+                "Quản lý",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -98,9 +98,9 @@ class _MainLeaderState extends State<MainLeader>
             child: TabBar(
               controller: _tabControllers,
               tabs: const [
-                Tab(text: 'Test', icon: Icon(Icons.task)),
-                Tab(text: 'Member', icon: Icon(Icons.people)),
-                Tab(text: 'Manage', icon: Icon(Icons.manage_accounts)),
+                Tab(text: 'Bài kiểm tra', icon: Icon(Icons.task)),
+                Tab(text: 'Thành viên', icon: Icon(Icons.people)),
+                Tab(text: 'Quản lý', icon: Icon(Icons.manage_accounts)),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.white,

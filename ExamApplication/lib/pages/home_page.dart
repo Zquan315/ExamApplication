@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 label: Text(
-                  "Create a Class",
+                  "Tạo lớp học",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 label: Text(
-                  "Join in a Class",
+                  "Tham gia lớp học",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.white),
                 ),
