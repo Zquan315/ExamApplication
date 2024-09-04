@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:ui';
+import 'package:examapp/Views/Auth/encryptPass.dart';
 import 'package:examapp/Views/Auth/login.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
@@ -35,15 +36,17 @@ class _AuthRegisState extends State<AuthRegis> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+  TextEditingController infoController = TextEditingController();
   String? otpValue;
   Color emailFieldColor = Colors.blue.withOpacity(.5);
   Color otpFieldColor = Colors.blue.withOpacity(.5);
-
+  bool _isloading = false;
   @override
   void initState() {
     super.initState();
     emailController = widget.emailController;
     otpController = TextEditingController();
+    infoController.text = "";
   }
 
   @override
@@ -165,9 +168,12 @@ class _AuthRegisState extends State<AuthRegis> {
               ),
               const SizedBox(height: 20,),
               Row(
+
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  _isloading
+                      ? CircularProgressIndicator()
+                  : Container(
                     height: 50,
                     width: 200,
                     child: ElevatedButton(
@@ -177,8 +183,15 @@ class _AuthRegisState extends State<AuthRegis> {
                         foregroundColor:
                         MaterialStateProperty.all(Colors.black87),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            _isloading = true;
+                          });
+                          await Future.delayed(Duration(microseconds: 500));
+                          setState(() {
+                            _isloading = false;
+                          });
                           if(emailController.text == "" ||
                               !isValidEmail(emailController.text) ||
                               otpController.text == "" ||
@@ -196,32 +209,26 @@ class _AuthRegisState extends State<AuthRegis> {
                           // );
                           _register(widget.usernameController.text,emailController.text,
                               widget.phoneController.text, widget.passwordController.text, widget.sexController.text);
+                          successAuth();
+                          await Future.delayed(Duration(seconds: 1));
                           showDialog(
                             context: context,
+                            barrierDismissible: false,
                             builder: (BuildContext context) {
-                              return AlertDialog(
-                                alignment: Alignment.center,
-                                title: const Text("Đăng ký"),
-                                content: const Text("Đăng ký thành công!",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.blue,
+                              return Dialog(
+                                backgroundColor: Colors.transparent,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
                                 ),
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => const Login()));
-                                    },
-                                    child: const Text("OK"),
-                                  ),
-                                ],
                               );
                             },
                           );
+                          await Future.delayed(Duration(milliseconds: 1500));
+
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                              builder: (context) => const Login()));
                           setState(() {
                             emailController.text = otpController.text ="";
                             emailFieldColor = Colors.blue.withOpacity(.5);
@@ -233,6 +240,14 @@ class _AuthRegisState extends State<AuthRegis> {
                     ),
                   )
                 ],
+              ),
+              SizedBox(height: 20,),
+              Text(
+                infoController.text,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green
+                ),
               )
             ],
           ),
@@ -243,6 +258,13 @@ class _AuthRegisState extends State<AuthRegis> {
   Future<void> _register(String name, String email, String phone, String pass, String sex) async{
     final data = Register(name: name, email: email, phone: phone, password: pass, sex: sex);
     var res = await connectMongoDb.register(data);
+  }
+
+  void successAuth()
+  {
+    setState(()  {
+      infoController.text ="Đăng ký thành công";
+    });
   }
 }
 bool isValidEmail(String email) {
@@ -266,4 +288,5 @@ bool isValidOTP(String otp)
 bool isDigit(String char) {
   return RegExp(r'^[0-9]$').hasMatch(char);
 }
+
 
