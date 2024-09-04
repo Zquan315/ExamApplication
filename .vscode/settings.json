@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "D:/ExamApp/ExamApplication/ExamApplication/linux"
+    "cmake.sourceDirectory": "D:/ExamApp/ExamApplication/ExamApplication/linux",
+    "cSpell.words": [
+        "examapp"
+    ]
 }

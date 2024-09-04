@@ -1,8 +1,5 @@
-import 'dart:ffi';
-import 'dart:io';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
-import 'dart:math';
 import 'package:examapp/Views/Password/ChangePass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

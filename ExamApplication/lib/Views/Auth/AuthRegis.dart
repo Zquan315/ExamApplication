@@ -1,11 +1,8 @@
-import 'dart:ffi';
-import 'dart:io';
 import 'dart:ui';
 import 'package:examapp/Views/Auth/encryptPass.dart';
 import 'package:examapp/Views/Auth/login.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
-import 'dart:math';
 import 'package:examapp/Views/Password/ChangePass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -76,7 +73,9 @@ class _AuthRegisState extends State<AuthRegis> {
                   )
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
 
               //Email
               Row(
@@ -106,12 +105,14 @@ class _AuthRegisState extends State<AuthRegis> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                    readOnly: true,
+                      readOnly: true,
                     ),
                   )
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               //OTP
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +151,8 @@ class _AuthRegisState extends State<AuthRegis> {
                 children: [
                   TextButton(
                       onPressed: () async {
-                        String? generatedOTP = await getOTP(emailController.text);
+                        String? generatedOTP =
+                            await getOTP(emailController.text);
                         if (generatedOTP != null) {
                           setState(() {
                             otpValue = generatedOTP;
@@ -166,88 +168,95 @@ class _AuthRegisState extends State<AuthRegis> {
                       ))
                 ],
               ),
-              const SizedBox(height: 20,),
-              Row(
-
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _isloading
-                      ? CircularProgressIndicator()
-                  : Container(
-                    height: 50,
-                    width: 200,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all(Colors.blue),
-                        foregroundColor:
-                        MaterialStateProperty.all(Colors.black87),
-                      ),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            _isloading = true;
-                          });
-                          await Future.delayed(Duration(microseconds: 500));
-                          setState(() {
-                            _isloading = false;
-                          });
-                          if(emailController.text == "" ||
-                              !isValidEmail(emailController.text) ||
-                              otpController.text == "" ||
-                              !isValidOTP(otpController.text) ||
-                              otpValue != otpController.text || otpValue == null){
-                            setState(() {
-                              otpController.text ="";
-                              emailFieldColor = Colors.red.withOpacity(.5);
-                              otpFieldColor = Colors.red.withOpacity(.5);
-                            });
-                            return;
-                          }
-                          // const CircularProgressIndicator(
-                          //
-                          // );
-                          _register(widget.usernameController.text,emailController.text,
-                              widget.phoneController.text, widget.passwordController.text, widget.sexController.text);
-                          successAuth();
-                          await Future.delayed(Duration(seconds: 1));
-                          showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext context) {
-                              return Dialog(
-                                backgroundColor: Colors.transparent,
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            },
-                          );
-                          await Future.delayed(Duration(milliseconds: 1500));
-
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                              builder: (context) => const Login()));
-                          setState(() {
-                            emailController.text = otpController.text ="";
-                            emailFieldColor = Colors.blue.withOpacity(.5);
-                            otpFieldColor = Colors.blue.withOpacity(.5);
-                          });
-                        }
-                      },
-                      child: const Text("Xác nhận"),
-                    ),
-                  )
-                ],
+              const SizedBox(
+                height: 20,
               ),
-              SizedBox(height: 20,),
+
+              _isloading
+                  ? CircularProgressIndicator()
+                  : Container(
+                      height: 50,
+                      width: 200,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue),
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.black87),
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              _isloading = true;
+                            });
+
+                            if (emailController.text == "" ||
+                                !isValidEmail(emailController.text) ||
+                                otpController.text == "" ||
+                                !isValidOTP(otpController.text) ||
+                                otpValue != otpController.text ||
+                                otpValue == null) {
+                              setState(() {
+                                otpController.text = "";
+                                emailFieldColor = Colors.red.withOpacity(.5);
+                                otpFieldColor = Colors.red.withOpacity(.5);
+                                _isloading = false;
+                              });
+                              return;
+                            }
+
+                            try {
+                              await _register(
+                                  widget.usernameController.text,
+                                  emailController.text,
+                                  widget.phoneController.text,
+                                  widget.passwordController.text,
+                                  widget.sexController.text);
+                              successAuth();
+
+                              await Future.delayed(Duration(seconds: 1));
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    backgroundColor: Colors.transparent,
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  );
+                                },
+                              );
+                              await Future.delayed(
+                                  Duration(milliseconds: 1500));
+
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Login()));
+                            } catch (e) {
+                              print("Lỗi trong quá trình đăng ký: $e");
+                            } finally {
+                              setState(() {
+                                _isloading = false;
+                                emailController.text = otpController.text = "";
+                                emailFieldColor = Colors.blue.withOpacity(.5);
+                                otpFieldColor = Colors.blue.withOpacity(.5);
+                              });
+                            }
+                          }
+                        },
+                        child: const Text("Xác nhận"),
+                      ),
+                    ),
+
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 infoController.text,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green
-                ),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
               )
             ],
           ),
@@ -255,32 +264,31 @@ class _AuthRegisState extends State<AuthRegis> {
       ),
     );
   }
-  Future<void> _register(String name, String email, String phone, String pass, String sex) async{
-    final data = Register(name: name, email: email, phone: phone, password: pass, sex: sex);
+
+  Future<void> _register(
+      String name, String email, String phone, String pass, String sex) async {
+    final data = Register(
+        name: name, email: email, phone: phone, password: pass, sex: sex);
     var res = await connectMongoDb.register(data);
   }
 
-  void successAuth()
-  {
-    setState(()  {
-      infoController.text ="Đăng ký thành công";
+  void successAuth() {
+    setState(() {
+      infoController.text = "Đăng ký thành công";
     });
   }
 }
+
 bool isValidEmail(String email) {
-  final RegExp emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-  );
+  final RegExp emailRegex =
+      RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
   return emailRegex.hasMatch(email);
 }
 
-bool isValidOTP(String otp)
-{
-  if(otp.length != 6)
-    return false;
-  for(int i = 0 ; i< otp.length;i++) {
-    if(!isDigit(otp[i]))
-      return false;
+bool isValidOTP(String otp) {
+  if (otp.length != 6) return false;
+  for (int i = 0; i < otp.length; i++) {
+    if (!isDigit(otp[i])) return false;
   }
   return true;
 }
@@ -288,5 +296,3 @@ bool isValidOTP(String otp)
 bool isDigit(String char) {
   return RegExp(r'^[0-9]$').hasMatch(char);
 }
-
-
