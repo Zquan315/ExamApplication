@@ -14,6 +14,14 @@ static connect() async {
   accountCollection = db.collection(ACCOUNT_COLLECTION);
   print("connect successfully");
 }
+
+static Future<Map<String, dynamic>?> querryAccount(String email) async {
+  await connect();
+  var user = await accountCollection.findOne(where.eq('email', email));
+  //await db.close();
+  return user;
+}
+
 static Future<String> register(Register data) async {
   try{
     var res = await accountCollection.insertOne(data.toJson());

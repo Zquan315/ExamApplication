@@ -8,6 +8,8 @@ import 'package:examapp/Views/class/member/main_member.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../ConnectDB/connectDB.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -18,8 +20,18 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final infoController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool _obscureText = true;
+  bool _isloading = false;
+  final errorController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    infoController.text ="";
+    errorController.text = "E";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +56,7 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(height: 20,),
                 InputField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                   hintText: "Email",
                   icon: Icons.email_rounded,
@@ -95,28 +108,58 @@ class _LoginState extends State<Login> {
                   ],
                 ),
 
-                Button(
+                _isloading
+                    ? CircularProgressIndicator()
+                    : Button(
                   label: "Đăng Nhập",
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {}
-                    if(emailController.text == 'admin' && passwordController.text == 'admin')
-                      {
-                        setState(() {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const mainScreen()));
-                        });
-                      }
-                    else if(emailController.text == 'member' && passwordController.text == 'member')
-                    {
+                  onTap: () async {
+                    if (formKey.currentState!.validate()) {
                       setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const mainScreen()));
+                        _isloading = true;
                       });
 
+                      await Future.delayed(Duration(microseconds: 500));
+
+                      var acc = await connectMongoDb
+                          .querryAccount(emailController.text);
+
+                      setState(() {
+                        _isloading = false;
+                      });
+
+                      if (acc != null) {
+                        if (passwordController.text != acc['password']) {
+                          failLogin();
+                        } else {
+                          successLogin();
+                          await Future.delayed(Duration(seconds: 1));
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                backgroundColor: Colors.transparent,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            },
+                          );
+
+                          await Future.delayed(Duration(milliseconds: 1500)); // Chờ 0.5 giây
+
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                              const mainScreen(),
+                            ),
+                          );
+                          reset();
+                        }
+                      } else {
+                        Warning();
+                      }
                     }
                   },
                 ),
@@ -133,6 +176,18 @@ class _LoginState extends State<Login> {
                         child: const Text('Đăng ký ngay'))
                   ],
                 ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(infoController.text,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: errorController.text == 'E' ? Colors.red : Colors.green,
+                      fontWeight: FontWeight.bold
+                    ),)
+                  ],
+                )
               ],
             ),
           ),
@@ -140,4 +195,34 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+  void Warning()
+  {
+    setState(() {
+      passwordController.text = "";
+      emailController.text = "";
+      infoController.text ="Email không tồn tại";
+      errorController.text = "E";
+    });
+  }
+  void failLogin()
+  {
+    setState(() {
+      errorController.text = "E";
+      passwordController.text = "";
+      infoController.text ="Đăng nhập thất bại";
+    });
+  }
+  void successLogin()
+  {
+    setState(()  {
+      errorController.text = "O";
+      infoController.text ="Đăng nhập thành công";
+    });
+  }
+  void reset()
+  {
+    emailController.text = passwordController.text = infoController.text ="";
+    errorController.text = "E";
+  }
 }
+
