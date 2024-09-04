@@ -92,13 +92,8 @@ class _LoginState extends State<Login> {
                 ),
 
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Checkbox(
-                      value: false,
-                      onChanged: (bool? value) {},
-                    ),
-                    const Text('Nhớ tài khoản'),
-                    const Spacer(),
                     TextButton(
                         onPressed: () => Navigator.push(
                             context,
@@ -120,8 +115,7 @@ class _LoginState extends State<Login> {
 
                       await Future.delayed(Duration(microseconds: 500));
 
-                      var acc = await connectMongoDb
-                          .querryAccount(emailController.text);
+                      var acc = await connectMongoDb.querryAccount(emailController.text);
 
                       setState(() {
                         _isloading = false;

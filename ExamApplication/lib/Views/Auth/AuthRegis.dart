@@ -38,12 +38,15 @@ class _AuthRegisState extends State<AuthRegis> {
   Color emailFieldColor = Colors.blue.withOpacity(.5);
   Color otpFieldColor = Colors.blue.withOpacity(.5);
   bool _isloading = false;
+  final existsController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     emailController = widget.emailController;
     otpController = TextEditingController();
     infoController.text = "";
+    existsController.text = "N";
   }
 
   @override
@@ -151,8 +154,19 @@ class _AuthRegisState extends State<AuthRegis> {
                 children: [
                   TextButton(
                       onPressed: () async {
-                        String? generatedOTP =
-                            await getOTP(emailController.text);
+                        var acc = await connectMongoDb.querryAccount(emailController.text);
+                        if(acc != null){
+                          existsEmail();
+                          return;
+                        }
+                        else
+                          {
+                            setState(() {
+                              existsController.text = "N";
+                              infoController.text ="";
+                            });
+                          }
+                        String? generatedOTP = await getOTP(emailController.text);
                         if (generatedOTP != null) {
                           setState(() {
                             otpValue = generatedOTP;
@@ -189,10 +203,8 @@ class _AuthRegisState extends State<AuthRegis> {
                             setState(() {
                               _isloading = true;
                             });
-
-                            if (emailController.text == "" ||
-                                !isValidEmail(emailController.text) ||
-                                otpController.text == "" ||
+                            print(otpValue);
+                            if (otpController.text == "" ||
                                 !isValidOTP(otpController.text) ||
                                 otpValue != otpController.text ||
                                 otpValue == null) {
@@ -250,13 +262,18 @@ class _AuthRegisState extends State<AuthRegis> {
                       ),
                     ),
 
-              SizedBox(
-                height: 20,
+              SizedBox(height: 20,
               ),
-              Text(
-                infoController.text,
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    infoController.text,
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold,
+                          color: existsController.text == 'Y' ? Colors.red : Colors.green,),
+                  ),
+                ],
               )
             ],
           ),
@@ -275,6 +292,12 @@ class _AuthRegisState extends State<AuthRegis> {
   void successAuth() {
     setState(() {
       infoController.text = "Đăng ký thành công";
+    });
+  }
+  void existsEmail() {
+    setState(() {
+      existsController.text = "Y";
+      infoController.text = "Email đã tồn tại";
     });
   }
 }

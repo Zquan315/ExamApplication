@@ -145,7 +145,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Button(
                   label: "Đăng Ký",
-                  onTap: () {
+                  onTap: ()  {
                     if (formKey.currentState!.validate()) {
                       if(!isValidEmail(emailController.text)){
                         setState(() {
