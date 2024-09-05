@@ -19,6 +19,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final sexController = TextEditingController();
   final passwordController = TextEditingController();
   final infoController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -126,6 +129,12 @@ class _LoginState extends State<Login> {
                           failLogin();
                         } else {
                           successLogin();
+                          setState(() {
+                            //emailController.text = acc['email'];
+                            nameController.text = acc['name'];
+                            phoneController.text = acc['phone'];
+                            sexController.text = acc['sex'];
+                          });
                           await Future.delayed(Duration(seconds: 1));
                           showDialog(
                             context: context,
@@ -139,14 +148,17 @@ class _LoginState extends State<Login> {
                               );
                             },
                           );
-
+                          print("Log:"+emailController.text);
                           await Future.delayed(Duration(milliseconds: 1500)); // Chờ 0.5 giây
-
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                              const mainScreen(),
+                              builder: (context) => mainScreen(
+                                nameController: nameController,
+                                phoneController: phoneController,
+                                emailController: emailController,
+                                sexController: sexController,
+                              ),
                             ),
                           );
                           reset();

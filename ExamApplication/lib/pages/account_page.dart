@@ -2,12 +2,39 @@ import 'package:examapp/Components/button.dart';
 import 'package:examapp/Views/Auth/login.dart';
 import 'package:flutter/material.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+class AccountPage extends StatefulWidget {
+  final TextEditingController nameController;
+  final TextEditingController phoneController;
+  final TextEditingController emailController;
+  final TextEditingController sexController;
 
+  const AccountPage({
+    super.key,
+    required this.nameController,
+    required this.phoneController,
+    required this.emailController,
+    required this.sexController,
+  });
 
+  @override
+  _AccountPageState createState() => _AccountPageState();
+}
 
+class _AccountPageState extends State<AccountPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController sexController = TextEditingController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nameController = widget.nameController;
+    emailController = widget.emailController;
+    phoneController = widget.phoneController;
+    sexController = widget.sexController;
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,20 +45,20 @@ class AccountPage extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        const Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "To Cong Quan",
+              nameController.text,
               style: TextStyle(fontSize: 25, color: Colors.red),
             )
           ],
         ),
-        const Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "0123456789",
+              phoneController.text,
               style: TextStyle(fontSize: 20, color: Colors.blue),
             )
           ],
@@ -39,7 +66,7 @@ class AccountPage extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        const Padding(
+         Padding(
           child: Row(
             children: [
               Column(
@@ -50,17 +77,13 @@ class AccountPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
-                width: 30,
+              SizedBox(width: 30,
               ),
-              Column(
-                children: [
-                  Text(
-                    "ExamApp312@gmail.com",
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
-                  )
-                ],
+              Text(
+                emailController.text,
+                style: TextStyle(fontSize: 20, color: Colors.blue),
               )
+
             ],
           ),
           padding: EdgeInsets.all(20.0),
@@ -72,14 +95,14 @@ class AccountPage extends StatelessWidget {
           endIndent: 20,
           color: Colors.grey,
         ),
-        const Padding(
+        Padding(
           child: Row(
             children: [
               Column(
                 children: [
                   Icon(
-                    Icons.male,
-                    color: Colors.blue,
+                    sexController.text == "Nam" ? Icons.male : Icons.female,
+                    color: sexController.text == "Nam" ? Colors.blue : Colors.pink
                   )
                 ],
               ),
@@ -89,8 +112,9 @@ class AccountPage extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "Nam/Nữ",
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                    sexController.text,
+                    style: TextStyle(fontSize: 20,
+                    color: sexController.text == "Nam" ? Colors.blue : Colors.pink),
                   )
                 ],
               )
@@ -112,63 +136,65 @@ class AccountPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FloatingActionButton.extended(
-            onPressed: () {
-              showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                icon: Icon(Icons.logout, color: Colors.red,),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('Bạn có chắc chắn đăng xuất?',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      icon: Icon(
+                        Icons.logout,
+                        color: Colors.red,
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.blue),
+                          const Text(
+                            'Bạn có chắc chắn đăng xuất?',
+                            style: TextStyle(
+                              fontSize: 20,
                             ),
-                              onPressed: (){Navigator.pop(context);},
-                              child: const Text(
-                                "Hủy",
-                                style: TextStyle(
-                                  color: Colors.white
-                                ),
-                              )
                           ),
-                          TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.blue),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all(
+                                          Colors.blue),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text(
+                                      "Hủy",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all(
+                                          Colors.blue),
+                                    ),
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const Login())),
+                                    child: const Text(
+                                      "Chắc rồi",
+                                      style: TextStyle(
+                                          color: Colors.white),
+                                    ))
+                              ],
                             ),
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login())),
-                              child: const Text(
-                                "Chắc rồi",
-                                style: TextStyle(
-                                    color: Colors.white
-                                ),
-                              )
                           )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              )
-              );
-            },
-            //Navigator.push(
-            //                   context,
-            //                   MaterialPageRoute(
-            //                       builder: (context) => const Login())),
+                    ));
+              },
               label: Text(
                 "Đăng xuất",
                 style: TextStyle(fontSize: 22, color: Colors.white),
@@ -198,6 +224,4 @@ class AccountPage extends StatelessWidget {
       ],
     );
   }
-
 }
-

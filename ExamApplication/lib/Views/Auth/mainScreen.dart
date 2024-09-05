@@ -11,7 +11,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class mainScreen extends StatefulWidget {
-  const mainScreen({super.key});
+  final TextEditingController nameController;
+  final TextEditingController phoneController;
+  final TextEditingController emailController;
+  final TextEditingController sexController;
+  const mainScreen(
+      {super.key,
+      required this.nameController,
+      required this.phoneController,
+      required this.emailController,
+      required this.sexController,});
 
   @override
   State<mainScreen> createState() => _mainScreenState();
@@ -20,12 +29,21 @@ class mainScreen extends StatefulWidget {
 class _mainScreenState extends State<mainScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabControllers;
-  String user = "";
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController sexController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    user = "user";
+    nameController = widget.nameController;
+    emailController = widget.emailController;
+    phoneController = widget.phoneController;
+    sexController = widget.sexController;
+    setState(() {
+      print("mainScreen: ${emailController.text}");
+    });
     _tabControllers = TabController(length: 4, vsync: this);
     _tabControllers.addListener(() {
       setState(() {});
@@ -46,7 +64,10 @@ class _mainScreenState extends State<mainScreen>
     } else if (_tabControllers.index == 2) {
       return const SettingsPage();
     } else {
-      return const AccountPage();
+      return  AccountPage(nameController: nameController,
+        phoneController: phoneController,
+        emailController: emailController,
+        sexController: sexController,);
     }
   }
 

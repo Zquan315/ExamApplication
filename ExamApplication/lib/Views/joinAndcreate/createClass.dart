@@ -162,23 +162,23 @@ class _createClassState extends State<createClass> {
             ],
           ),
           SizedBox(height: 5,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const mainScreen())),
-                  child: const Text(
-                    "Thoát",
-                    style: TextStyle(
-                        fontSize: 18,
-                        decoration: TextDecoration.underline
-                    ),
-                  ))
-            ],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     TextButton(
+          //         onPressed: () => Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => const mainScreen())),
+          //         child: const Text(
+          //           "Thoát",
+          //           style: TextStyle(
+          //               fontSize: 18,
+          //               decoration: TextDecoration.underline
+          //           ),
+          //         ))
+          //   ],
+          // )
         ],
       ),
     );
